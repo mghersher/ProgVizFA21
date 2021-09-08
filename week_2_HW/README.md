@@ -12,4 +12,4 @@ variation in bubble sizes.
 
 Here is an image of how that displays:
 
-![final_scatter](final_scatter.png "Bubble chart")
+![final_scatter](/final_scatter.png "Bubble chart")
