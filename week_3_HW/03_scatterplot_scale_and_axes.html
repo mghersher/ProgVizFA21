@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>SVG Scatterplot Scales and Axes</title>
+    <script type="text/javascript" src="https://d3js.org/d3.v7.min.js"></script>
+    <style type="text/css">
+    </style>
+</head>
+
+<body>
+    <script type="text/javascript">
+        //Define functions for parsing dates
+        const parseTime = d3.timeParse("%m/%d/%Y"); //Converts string to date
+        const formatTime = d3.timeFormat("%m"); //Converts date to a string of only the month as a number
+
+        const parseMonth = d3.timeParse('%m')
+        const formatMonthName = d3.timeFormat('%b')
+
+        //Read water sampling data from csv
+        const scatterPromise = d3.csv('data/DOHMH_Beach_Water_Quality_Data.csv')
+        scatterPromise.then(function (data) {
+
+            //STEP 1 - Clean and analyze data
+
+            //Extract month from sample and convert to int
+            data.forEach((d) => {
+                d['monthSample'] = +formatTime(parseTime(d['Sample Date']))
+                d['Enterococci Results'] = +d['Enterococci Results']
+            })
+
+            //Drop any samples that are missing results
+            var cleanData = data.filter((dataObject) => {
+                return dataObject['Enterococci Results']
+            })
+
+            /*Group by month and calculate monthly averages filtering to those
+            months with data*/
+            var months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+            var monthAvg = 0;
+            var monthData = [];
+            var groupedMonth = months.map((month) => {
+                monthData = cleanData.filter((sampleObject) => {
+                    return sampleObject['monthSample'] === month;
+                }).map((sampleObject) => sampleObject['Enterococci Results'])
+                //Find average concisely using reduce - https://stackoverflow.com/questions/29544371/finding-the-average-of-an-array-using-js
+                if (monthData.length > 0) {
+                    monthAvg = monthData.reduce((a, b) => a + b) / monthData.length;
+                }
+                else {
+                    monthAvg = null
+                }
+
+                return { 'month': month, 'avgBact': monthAvg, 'bactVals': monthData }
+            }).filter((monthObject) => monthObject['avgBact'])
+
+
+            //STEP 2 - Define SVG object attributes, scales, and axes
+
+            //Define canvas attributes
+            const canvasWidth = 600;
+            const canvasHeight = 400;
+            const padding = 50;
+
+            //Define scales
+            const xScale = d3.scaleLinear()
+                .domain([0, 12])
+                .range([padding, canvasWidth - padding])
+
+            const yExtent = d3.extent(cleanData.map((d) => d['Enterococci Results']))
+            const yScale = d3.scaleLog()
+                .domain(yExtent)
+                .range([canvasHeight - padding, padding])
+
+            //Define axis instances
+            const bottomAxis = d3.axisBottom()
+                .scale(xScale)
+                .tickValues([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
+                .tickFormat((d) => formatMonthName(parseMonth(d))) //Could I have used a scaleTime() to save the effort of all this parsing back and forth?
+
+            const leftAxis = d3.axisLeft()
+                .scale(yScale)
+                .tickValues([10, 100, 1000, 10000])
+
+            //STEP 3 - Create the chart!
+
+            //Append SVG
+            const svg = d3.select('body')
+                .append('svg')
+                .attr('height', canvasHeight)
+                .attr('width', canvasWidth)
+
+            var circles = svg.append('g') //Appending group would let me easily style avg circles and sample circles differently
+                .attr('class', 'stat-circles')
+
+            //Append one black circle for every bacteria sample taken
+            circles.selectAll('circle')
+                .data(cleanData)
+                .enter()
+                .append('circle')
+                .attr('r', 1)
+                .attr('cx', d => xScale(d['monthSample']))
+                .attr('cy', d => yScale(d['Enterococci Results']))
+                .attr('fill', 'black')
+
+            //Append red circles at the average bacteria found each month
+            var avgCircles = svg.append('g')
+                .attr('class', 'average-circles')
+            avgCircles.selectAll('circle')
+                .data(groupedMonth)
+                .enter()
+                .append('circle')
+                .attr('r', 4)
+                .attr('cx', d => xScale(d['month']))
+                .attr('cy', d => yScale(d['avgBact']))
+                .attr('fill', 'red')
+
+            //Add axes to the chart
+            svg.append('g')
+                .attr('transform', 'translate(0,' + (canvasHeight - padding) + ')')
+                .call(bottomAxis)
+
+            svg.append('g')
+                .attr('transform', 'translate(' + padding + ',0)')
+                .call(leftAxis)
+
+            //Add y-axis label
+            svg.append("text")
+                .attr("class", "y label")
+                .attr("text-anchor", "middle")
+                .attr("y", 10)
+                .attr('x', -(canvasHeight) / 2)
+                .attr("transform", "rotate(-90)")
+                .attr('font-size', 10)
+                .attr('font-family', 'sans-serif')
+                .text("Log of Enterococci concentratio (MPN/100ml water)");
+
+            //Add title label
+            svg.append("text")
+                .attr("class", "title")
+                .attr("text-anchor", "middle")
+                .attr("y", 20)
+                .attr('x', (canvasWidth / 2))
+                .attr('font-size', 12)
+                .attr('font-weight', 'bold')
+                .attr('font-family', 'sans-serif')
+                .text("Monthly variation in New York City beach water bacteria (2005-21) ");
+
+
+
+        })
+
+
+    </script>
+</body>
+
+</html>
