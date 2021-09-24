@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>SVG Scatterplot Scales and Axes</title>
+    <script type="text/javascript" src="https://d3js.org/d3.v7.min.js"></script>
+    <style type="text/css">
+    </style>
+</head>
+
+<body>
+    <script type="text/javascript">
+
+        //Read population change data
+        const dataPromise = d3.csv('data/pop_change_18_19.csv')
+        dataPromise.then(function (data) {
+
+            //STEP 1 - Clean data
+
+            data.forEach((d) => {
+                d['pop_change'] = +d['pop_change'].replace(',', '').trim()
+                d['state'] = d['state'].replace('.', '').trim()
+            })
+
+            /*STEP 2 - Define path of shape so that it can be dynamically
+            adjusted in size*/
+            var trianglePath = (length) => `M0,50 L40,50 L20,${50 - length}`
+
+
+            //STEP 3 - Define SVG object attributes, scales, and axes
+
+            //Define constants necessary later
+            const canvasWidth = 800;
+            const canvasHeight = 1000;
+            const triangleBase = 50;
+            const triangleWidth = 40
+            const perRow = 7;
+            const size = 70;
+            const sizeY = 100;
+            const domainPop = d3.extent(data.map(d => Math.abs(d['pop_change'])))
+
+            //Define scale that will control length of triangle
+            const lengthScale = d3.scaleLinear()
+                .domain(domainPop)
+                .range([10, 50])
+
+
+            //STEP 4 - Append the SVG shapes to the page sized to data
+
+            //Append SVG canvas
+            const svg = d3.select('body')
+                .append('svg')
+                .attr('height', canvasHeight)
+                .attr('width', canvasWidth)
+
+            //Making group for each state and position it according to a grid
+            const g = svg.selectAll("g")
+                .data(data)
+                .enter()
+                .append("g")
+                .attr("transform", (d, i) => {
+                    const x = (i % perRow + 1) * size;
+                    const y = (Math.floor(i / perRow) + .55) * sizeY;
+                    return 'translate(' + [x, y] + ')';
+                })
+
+            //Append paths sized and oriented by population change
+            g.append('path')
+                .attr('d', d => trianglePath(lengthScale(Math.abs(d['pop_change']))))
+                .attr('fill', d => (d['pop_change'] < 0) ? '#E66100' : '#5D3A9B')
+                .attr("stroke", '#ffffff')
+                .attr("stroke-width", "1px")
+                .attr('transform', (d) => {
+                    var triangleLength = lengthScale(Math.abs(d['pop_change']))
+                    if (d['pop_change'] < 0) {
+                        var rotate = 180;
+                    }
+                    else {
+                        var rotate = 0;
+                    }
+                    return 'rotate(' + rotate + ',' + triangleWidth / 2 + ',' + (triangleBase - triangleLength / 2) + ')';
+                })
+
+
+            //Append labels for states
+            g.append("text")
+                .attr("x", triangleWidth / 2)
+                .attr("y", triangleBase + 20)
+                .attr("text-anchor", "middle")
+                .text(d => d['state'])
+                .attr('font-size', '10px')
+
+            //Append title
+            svg.append('text')
+                .attr("x", canvasWidth / 2 - 300)
+                .attr("y", 50)
+                .text("Population increase/decrease proportional to triangle size, color, and orientation")
+                .attr('font-size', '13px')
+
+        })
+
+
+    </script>
+</body>
+
+</html>
