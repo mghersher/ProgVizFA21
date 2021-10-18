@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>SVG Scatterplot Scales and Axes</title>
+    <script type="text/javascript" src="https://d3js.org/d3.v7.min.js"></script>
+    <style type="text/css">
+        .title {
+            font-size: 11px;
+        }
+
+        #selection-container {
+            font-size: 11px;
+            margin-left: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="selection-container">
+        <form>
+            <label>Choose a starting year:</label>
+            <select name="startYear" id="startYear">
+                <option value=1990 selected>1990</option>
+                <option value=2000>2000</option>
+                <option value=2010>2010</option>
+                <option value=2020>2020</option>
+            </select>
+            <br>
+            <br>
+            <label>Choose an ending year:</label>
+            <select name="endYear" id="endYear">
+                <option value=1990>1990</option>
+                <option value=2000>2000</option>
+                <option value=2010>2010</option>
+                <option value=2020 selected>2020</option>
+            </select>
+        </form>
+
+    </div>
+
+    <script type="text/javascript">
+
+        function perChangeCalc(popStart, popEnd) {
+            return (popEnd - popStart) / popStart * 100
+        }
+
+        //Read population change data
+        const dataPromise = d3.csv('data/state_pop_change_1990to2020.csv')
+        dataPromise.then(function (data) {
+
+            //Grab current form selection to initiate
+            let startYear = d3.select('#startYear').property("value")
+            let endYear = d3.select('#endYear').property("value")
+
+            //STEP 1 - Clean data
+
+            data.forEach((d) => {
+                d['1990'] = +d['1990'].replace(' ', '').replace(',', '').trim()
+                d['2000'] = +d['2000'].replace(' ', '').replace(',', '').trim()
+                d['2010'] = +d['2010'].replace(' ', '').replace(',', '').trim()
+                d['2020'] = +d['2020'].replace(' ', '').replace(',', '').trim()
+                d['state'] = d['state'].replace('.', '').trim()
+            })
+
+            data.forEach((d) => {
+                d['perChange'] = perChangeCalc(d[String(startYear)], d[String(endYear)])
+            })
+
+            //Calculate percentage
+
+            console.log(data)
+
+            /*STEP 2 - Define path of shape so that it can be dynamically
+            adjusted in size*/
+            var trianglePath = (length) => `M0,50 L40,50 L20,${50 - length}`
+
+
+            //STEP 3 - Define SVG object attributes, scales, and axes
+
+            //Define constants necessary later
+            const canvasWidth = 800;
+            const canvasHeight = 1000;
+            const triangleBase = 50;
+            const triangleWidth = 40
+            const perRow = 7;
+            const size = 70;
+            const sizeY = 100;
+            // const domainPop = d3.extent(data.map(d => Math.abs(d['pop_change'])))
+
+            //Define scale that will control length of triangle
+            const lengthScale = d3.scaleLinear()
+                .domain([0, 100])
+                .range([10, 50])
+
+
+            //STEP 4 - Append the SVG shapes to the page sized to data
+
+            //Append SVG canvas
+            const svg = d3.select('body')
+                .append('svg')
+                .attr('height', canvasHeight)
+                .attr('width', canvasWidth)
+
+            //Making group for each state and position it according to a grid
+            const g = svg.selectAll("g")
+                .data(data, d => d['state'])
+                .enter()
+                .append("g")
+                .attr("transform", (d, i) => {
+                    const x = (i % perRow + 1) * size;
+                    const y = (Math.floor(i / perRow) + .55) * sizeY;
+                    return 'translate(' + [x, y] + ')';
+                })
+
+            //Append paths sized and oriented by population change
+            g.append('path')
+                .attr('d', d => trianglePath(lengthScale(Math.abs(d['perChange']))))
+                .attr('fill', d => (d['perChange'] < 0) ? '#E66100' : '#5D3A9B')
+                .attr("stroke", '#ffffff')
+                .attr("stroke-width", "1px")
+                .attr('transform', (d) => {
+                    var triangleLength = lengthScale(Math.abs(d['perChange']))
+                    if (d['perChange'] < 0) {
+                        var rotate = 180;
+                    }
+                    else {
+                        var rotate = 0;
+                    }
+                    return 'rotate(' + rotate + ',' + triangleWidth / 2 + ',' + (triangleBase - triangleLength / 2) + ')';
+                })
+
+
+            //Append labels for states
+            g.append("text")
+                .attr("x", triangleWidth / 2)
+                .attr("y", triangleBase + 20)
+                .attr("text-anchor", "middle")
+                .text(d => d['state'])
+                .attr('font-size', '10px')
+
+            //Append title
+            svg.append('text')
+                .attr("x", 50)
+                .attr("y", 25)
+                .text("Percent change in state population between these years:")
+                .attr('class', 'title')
+
+
+            //STEP 5 - Add interactivity so user can change years
+
+            //Grab current form inputs when user hovers so that I can
+            //reinitialize to these if the next user input fails
+            d3.selectAll("select").on("mouseover", (event, d) => {
+                console.log('mouseover')
+                //Grab current form selection to initiate
+                currentStartYear = d3.select('#startYear').property("value")
+                currentEndYear = d3.select('#endYear').property("value")
+            })
+
+            //Listen for whether either selection is changed in form
+            d3.selectAll("select").on("change", (event, d) => {
+
+                //Update startYear or EndYear depending on which was changed
+                if (event.currentTarget.id == 'startYear') {
+                    startYear = +event.currentTarget.value
+                    console.log(startYear)
+                }
+                else {
+                    endYear = +event.currentTarget.value
+                    console.log(endYear)
+                }
+
+                //Check that selection is valid
+                if (startYear >= endYear) {
+                    alert("Start year must be before end year. Please reselect.")
+                    d3.select('#startYear').property("value", currentStartYear)
+                    d3.select('#endYear').property("value", currentEndYear)
+                }
+                else { // If valid, update size, orientation, and color of triangles
+
+                    //Recalculate population change based on entry of years
+                    data.forEach((d) => {
+                        d['perChange'] = perChangeCalc(d[String(startYear)], d[String(endYear)])
+                    })
+
+                    //Update size of triangles and then color/orientation
+                    d3.selectAll('g')
+                        .data(data, d => d['state'])
+                        .selectAll('path')
+                        .transition()
+                        .duration(2000)
+                        .ease(d3.easeQuadIn)
+                        .attr('d', d => trianglePath(lengthScale(Math.abs(d['perChange']))))
+                        .transition()
+                        .duration(2000)
+                        .attr('fill', d => (d['perChange'] < 0) ? '#E66100' : '#5D3A9B')
+                        .attr('transform', (d) => {
+                            var triangleLength = lengthScale(Math.abs(d['perChange']))
+                            if (d['perChange'] < 0) {
+                                var rotate = 180;
+                            }
+                            else {
+                                var rotate = 0;
+                            }
+                            return 'rotate(' + rotate + ',' + triangleWidth / 2 + ',' + (triangleBase - triangleLength / 2) + ')';
+                        })
+                    // update()
+                }
+            })
+
+        })
+
+
+
+    </script>
+</body>
+
+</html>
