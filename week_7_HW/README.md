@@ -1,5 +1,5 @@
 
-Week 6 Homework
+Week 7 Homework
 ===============
 
 D3 Interactivity - Ingredients for a Spike Map - Now animated!
