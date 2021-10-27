@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Stacked Area</title>
+    <script type="text/javascript" src="https://d3js.org/d3.v7.min.js"></script>
+    <style type="text/css">
+        /*Tooltip styles*/
+        #tooltip {
+            position: absolute;
+            width: 150px;
+            height: 40px;
+            line-height: 40px;
+            /*Setting equivalent to height makes it vertically centered*/
+            padding: 4px 0;
+            text-align: center;
+            font-family: sans-serif;
+            font-size: 10px;
+            font-weight: 300;
+            background: lightgray;
+            border-radius: 2px;
+            opacity: 0;
+            /*Until event*/
+        }
+    </style>
+</head>
+
+<body>
+    <div id='tooltip'></div>
+    <svg width="600" height="600"></svg>
+    <script type="text/javascript">
+        //Load data - see jupyter notebook for dataset creation
+        const dataPromise = d3.csv('data/processed_data/fires_by_gacc_and_month.csv')
+        dataPromise.then(function (dataset) {
+
+            //Categories for steamgraph
+            const categories = ['Eastern Area', 'Great Basin', 'Northern Rockies', 'Northwest',
+                'Northern California', 'Southern California', 'Rocky Mountain',
+                'Southern Area', 'Southwest', 'Alaska']
+
+            //Change strings to numeric
+            dataset.forEach(d => {
+                d['month'] = +d['month']
+                categories.forEach(cat => {
+                    d[cat] = +d[cat]
+                })
+            })
+
+            //Constants necessary throughout code
+            const svg = d3.select("svg");
+            const w = 600;
+            const h = 600;
+            const myColor = d3.scaleOrdinal(d3.schemeSet3);
+            const padding = 30;
+
+            //Set up stack and area calculation for steamgraph
+            const stack = d3.stack()
+                .keys(categories)
+                .offset(d3.stackOffsetSilhouette);
+            // .order(d3.stackOrderInsideOut) //Alternative 
+            // .offset(d3.stackOffsetWiggle)
+
+            const series = stack(dataset);
+
+            //Calculate baseline, topline, and x-coordinate for each cat area
+            const area = d3.area()
+                .x(d => xScale(d.data.month))
+                .y0(d => yScale(d[0]))
+                .y1(d => yScale(d[1]));
+
+            //Define scales
+            const xScale = d3.scaleLinear()
+                .domain(d3.extent(dataset, d => d['month']))
+                .range([padding, w - padding]);
+
+            const yScale = d3.scaleLinear()
+                .domain([0, 31980]) //Calculated in jupyter notebook
+                .range([h - padding, padding]);
+
+            //Define x-axis instance
+            const parseMonth = d3.timeParse('%m')
+            const formatMonthName = d3.timeFormat('%b')
+            const bottomAxis = d3.axisBottom()
+                .scale(xScale)
+                .tickValues([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
+                .tickFormat((d) => formatMonthName(parseMonth(d)))
+                .tickSize(-h) //Set ticks up to across entire steamgraph
+
+            //Add x-axis to the chart
+            svg.append('g')
+                .attr('transform', 'translate(0,' + (h - padding) + ')')
+                .call(bottomAxis)
+                .call(g => g.selectAll(".tick line") //Lighten and dash ticks
+                    .attr("stroke-opacity", 0.7)
+                    .attr("stroke-dasharray", "1,2"))
+                .call(g => g.selectAll(".tick text") //Move tick labels
+                    .attr("x", 0)
+                    .attr("dy", 12))
+                .call(g => g.select(".domain").remove()) //Remove horizontal part of axis
+
+            //Create group to move steamgraph up on page (otherwise cut off)
+            const steamGroup = svg.append('g')
+                .attr('transform', 'translate(0,' + (-h / 2) + ')')
+
+            //Draw steamgraph with tooltips instead of region key
+            steamGroup.selectAll("path")
+                .data(series)
+                .enter()
+                .append("path")
+                .attr("d", area)
+                .style("fill", (d, i) => myColor(i))
+                .on("mouseover", (event, d) => {
+                    console.log(d['key'])
+                    d3.select("#tooltip")
+                        .transition()
+                        .duration(300)
+                        .style("opacity", 1)
+                        .style("left", (event.pageX + 2) + "px")
+                        .style("top", (event.pageY + 2) + "px")
+                        .text("Region: " + d['key']);
+                })
+                .on("mouseout", (event, d) => {
+                    d3.select("#tooltip")
+                        .transition()
+                        .style("opacity", 0);
+                })
+                .on("mousemove", (event, d) => {
+                    d3.select("#tooltip")
+                        .style("left", (event.pageX + 2) + "px")
+                        .style("top", (event.pageY + 2) + "px")
+                });
+        })
+
+    </script>
+</body>
+
+</html>
