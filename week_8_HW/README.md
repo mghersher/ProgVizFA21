@@ -30,4 +30,8 @@ Here is an image of how the final visualization displays without tooltips:
 
 ![final_plot](chart_without_tooltip.png "steamchart")
 
-And one with tooltips: ![final_plot_tooltip](chart_without_tooltip.png "steamchart tooltips")
+And one with tooltips: ![final_plot_tooltip](chart_with_tooltip.png "steamchart tooltips")
+
+These were some steamgraph examples the inspired me along the way:
+[Ex 1](https://observablehq.com/@d3/streamgraph)
+[Ex 2](https://www.d3-graph-gallery.com/graph/streamgraph_template.html)
