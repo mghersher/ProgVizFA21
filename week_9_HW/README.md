@@ -9,8 +9,8 @@ The code in this folder creates two side-by-side force networks that visualize
 how yearly probability compounds. FEMA defines a high risk floodplain as one
 that has a 1 in 100 risk of flooding. Many underestimate this to mean that a
 house in these floodplains have a 1% risk of flooding in 100 years. This is not
-the case because of how probability compounds. I created a scrollytelling
-visualiization a year back in ArcGIS that tried to communicate this and for
+the case because of how probability compounds. I [created a scrollytelling
+visualization in ArcGIS](https://storymaps.arcgis.com/stories/8d2bb89b23cc4ba09cf08c4b052ff67c) that tried to communicate this, and for
 this project I decided to recreate it in d3.
 
 I was particularly interested in creating this visualization because it forced
