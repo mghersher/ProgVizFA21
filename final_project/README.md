@@ -28,7 +28,8 @@ The below visualization demonstrates the tooltip functionality.
 
 ![tooltip](tooltip.png "Tooltip visualization")
 
-The code is divided into three files:
+**The code is divided into three files:**
+
 - index.html: This outlines the overall structure of the page, creating places
   for the title, paragraphs, graphics, legend, and footnotes to be inserted.
   Except for the footnote, title, and introductory paragraphs, nothing is
@@ -41,6 +42,8 @@ The code is divided into three files:
 - main.css: This is where almost all the styling lives (except for some that is
   dependent on the data which is executed directly in graphic.js)
 
-Data Sources:
-[C02 emissions](https://github.com/owid/co2-data)
-[Sufficiency of efforts](https://climateactiontracker.org/methodology/cat-rating-methodology/)
+**Data Sources:**
+
+- [C02 emissions](https://github.com/owid/co2-data)
+
+- [Sufficiency of efforts](https://climateactiontracker.org/methodology/cat-rating-methodology/)
