@@ -5,250 +5,112 @@
   <meta charset="utf-8">
   <title>Force Network Graph Example</title>
   <script type="text/javascript" src="https://d3js.org/d3.v7.min.js"></script>
-  <style type="text/css">
-    /* #graphic {
-    /* border: 2px solid green; */
-    /* } */
-
-    .subGraphicContainer {
-      /*Don't understand why they stack if I put this up to 50%*/
-      width: 33%;
-      /*Makes the divs sit side by side */
-      float: left;
-      /* padding: 30px; */
-      /* border: 2px solid red; */
-    }
-
-    .subGraphicTitle {
-      text-align: center;
-      /* border: 2px solid blue; */
-      text-transform: uppercase;
-      font-family: Verdana, Geneva, Tahoma, sans-serif;
-      padding-bottom: 5px;
-      padding-top: 30px;
-    }
-
-    .explanatoryText {
-      text-align: center;
-      /* border: 2px solid blue; */
-      font-family: Verdana, Geneva, Tahoma, sans-serif;
-      padding-bottom: 5px;
-      padding-top: 30px;
-    }
-
-    .menuContainer {
-      width: 50%;
-      /*Makes the divs sit side by side */
-      float: left;
-      text-align: center;
-      font-family: Verdana, Geneva, Tahoma, sans-serif;
-
-    }
-
-    .menu {
-      text-align: center;
-      font-family: Verdana, Geneva, Tahoma, sans-serif;
-      padding: 15px;
-    }
-
-
-    #mainTitle {
-      text-align: center;
-      /* text-transform: uppercase; */
-      font-family: Verdana, Geneva, Tahoma, sans-serif;
-      padding: 15px;
-      width: 50%;
-      margin: auto;
-    }
-
-    svg {
-      display: block;
-      margin: auto;
-    }
-
-    .radioNone {
-      display: none;
-    }
-  </style>
+  <link rel="stylesheet" href="main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cabin&family=Roboto:ital,wght@0,700;1,400&display=swap"
+    rel="stylesheet">
 </head>
-<div id='graphic'>
-  <div id='mainTitle'>This is a paragraph that explains the
-    subject of the graphic. This is a paragraph that explains the
-    subject of the graphic. This is a paragraph that explains the
-    subject of the graphic. This is a paragraph that explains the
-    subject of the graphic.</div>
-
-  <div id='form1' class='menuContainer'>
-    What countries have committed to
-    <form class='menu'>
-      <input type="radio" id="deforestation" name="commitment"
-        value="deforestation">
-      <label for="deforestation">Deforestation</label><br>
-      <input type="radio" id="methane" name="commitment" value="methane">
-      <label for="methane">Methane</label><br>
-      <input type="radio" id="renewableEnergy" name="commitment"
-        value="renewableEnergy">
-      <label for="renewableEnergy">Renewable Energy</label>
-    </form>
-  </div>
-  <div id='form2' class='menuContainer'>
-    Is it enough?
-    <form class='menu'>
-      <input type="radio" id="enough" name="metricSuccess" value="enough">
-      <label for="enough"></label><br>
-      <input type="radio" id="enoughb" class='radioNone' name="metricSuccess"
-        value="enough">
-      <label for="enough"></label><br>
-      <input type="radio" id="enoughc" class='radioNone' name="metricSuccess"
-        value="enough">
-      <label for="enough"></label><br>
-    </form>
-  </div>
-</div>
 
 <body>
-  <script type="text/javascript">
+  <div id='graphic'>
+    <div id='mainTitle'>Scientists have sounded the alarm: Are we doing enough?
+    </div>
+    <div id='introParContainer'>
+      <table>
+        <tr>
+          <th>The Alarm</th>
+          <th>The Response</th>
+        </tr>
+        <tr>
+          <td>
+            <p>The year 2021 was a landmark year for
+              climate science.
+              For decades, scientists have pointed to concerning trends in
+              Earth's
+              climate and pointed to greenhouse gases as a major threat, but
+              2021
+              was
+              the first year that the United Nations International Panel on
+              Climate Change (IPCC) concluded that human influence has
+              <a
+                href='https://www.ipcc.ch/report/ar6/wg1/downloads/report/IPCC_AR6_WGI_SPM_final.pdf'>unequivocally
+                warmed the
+                atmosphere, ocean, and land'.</a> This type of unambiguous
+              consensus
+              among
+              scientists is rare and the implications are serious and cascading.
+              <br><br>
+              When concentrations of greenhouse gases like C02 increase in our
+              atmosphere, they cause temperatures to change and weather patterns
+              to
+              shift. This leaves the world vulnerable to things like more
+              extreme
+              droughts and more frequent disasters. These changes compound into
+              things
+              like food
+              shortages, health
+              crises, and housing insecurity.
+            </p>
+          </td>
+          <td>
+            <p>Climate
+              scientists agree that to avoid the most
+              serious effects on our climate we need to limit the global
+              temperature
+              increase to at or below 1.5°C. (For context - the IPCC
+              estimates that <a
+                href='https://www.ipcc.ch/report/ar6/wg1/downloads/report/IPCC_AR6_WGI_SPM_final.pdf'>global
+                warming is likely to reach 1.5°C
+                between 2030 and 2052 if it continues to increase at the current
+                rate</a>.')
+              We have a lot of work to do.
+              <br><br>
+              Over the past decade scientists have called on global leaders
+              repeatedly
+              to make changes that will limit C02 emissions: things like
+              shifting to renewable
+              sources of energy, building out infrastructure that facilitates a
+              shift from traditional gas-powered cars, and decreasing
+              deforestation.
+              <br><br>
+              The responsiblity of each country is not equal though. Some
+              countries
+              emit far more than others and to meet the 1.5°C these
+              countries need to do their part. This graphic lets you explore who
+              the
+              biggest emitters are and whether their promises to cut back will
+              be
+              enough to stay below the 1.5°C target.
+            </p>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class='menuContainer'> Are we doing enough?
+      <br><br>
+      <label class="switch">
+        <input type="checkbox">
+        <span id='enoughButton' class="slider"></span>
+      </label>
+    </div>
+    <div id='legendContainer'></div>
+    <div id='mainGraphicContainer'>
+    </div>
+    <p id='footnote'>Note: The circles are sized according to the annual C02
+      emissions of that
+      country. The emissions data is maintained by Our World in Data
+      and can be explored <a href='https://github.com/owid/co2-data'>here</a>.
+      The 'Are we doing enough?' categorizations are developed by the Climate
+      Action Tracker. Their methodology is documented <a
+        href='https://climateactiontracker.org/methodology/cat-rating-methodology/'>here</a>.
+      Any countries not present in the 'Are we doing enough?' view remain
+      uncategorized by the tracker.
+    </p>
+  </div>
 
-    //Define a config object that I can pass to forceNetwork()
-    config = {
-      svgWidth: 350,
-      svgHeight: 350,
-      parentSelector: 'graphic-chart-container',
-      subGraphics: [
-        {
-          id: 'explanatoryText',
-          position: 'farLeftText',
-          text: 'This is the explanatory text of the graphic.'
-        },
-        {
-          id: 'committed',
-          position: 'leftGraphic',
-          text: 'Have committed'
-        },
-        {
-          id: 'notCommitted',
-          position: 'rightGraphic',
-          text: "Have not committed"
-        }
-      ]
-    }
-
-    d3.csv('data/2020_co2_emissions.csv').then(nodesData => {
-      nodesData.forEach(d => {
-        d['co2'] = +d['co2']
-      })
-
-      console.log('data', nodesData)
-
-      //Create container for each forceNetwork div
-      let chartParent = `<div id ="${config.parentSelector}"></div>`
-      document.querySelector('#graphic')
-        .insertAdjacentHTML('beforeend', chartParent)
-
-      //Create separate divs for each forceNetwork plot and draw network within each
-      config.subGraphics.forEach(subGraphic => {
-        let subDiv = `<div id ="${subGraphic.position}" class ="subGraphicContainer"></div>`
-        document.querySelector(`#${config.parentSelector}`)
-          .insertAdjacentHTML('beforeend', subDiv)
-
-        //Adjust the config for each forceNetwork subplot to have the subplot ID
-        let subPlotConfig = deepCopy(config)
-        subPlotConfig.parentSelector = `#${subGraphic.position}`
-
-        forceNetwork(nodesData, subPlotConfig)
-
-
-      })
-    })
-
-
-
-
-    //This is a function written by people at my job that I use a lot
-    function deepCopy(obj) {
-      return JSON.parse(JSON.stringify(obj))
-    }
-
-    /*Write a function that can be called within each div to draw a
-    network based on config*/
-    function forceNetwork(nodesData, config) {
-
-      //Define scale to size by emissions
-      //Define scales
-      const xScale = d3.scaleSqrt()
-        .domain([.008, 10667.887])
-        .range([1, 50])
-
-      //Filter the config object to the subplot that is being drawn
-      let graphicSelected = config.subGraphics.filter(d => {
-        console.log(config.parentSelector)
-        return d.position == config.parentSelector.replace('#', '')
-      })[0]
-      console.log(config.parentSelector)
-
-      if (config.parentSelector === '#farLeftText') {
-        console.log('far left')
-        //Create a subgraphic div in container for force network
-        let subTitleDiv = `<div id ="${graphicSelected.id}" class ="explanatoryText">${graphicSelected.text}</div>`
-        document.querySelector(`${config.parentSelector}`)
-          .insertAdjacentHTML('beforeend', subTitleDiv)
-
-        const svg = d3.select(config.parentSelector)
-          .append('svg')
-          .attr('width', config.svgWidth)
-          .attr('height', config.svgHeight)
-      }
-      else {
-
-        //Create a subgraphic div in container for force network
-        let subTitleDiv = `<div id ="${graphicSelected.id}" class ="subGraphicTitle">${graphicSelected.text}</div>`
-        document.querySelector(`${config.parentSelector}`)
-          .insertAdjacentHTML('beforeend', subTitleDiv)
-
-        //Append svg to each subgraphic div
-        const svg = d3.select(config.parentSelector)
-          .append('svg')
-          .attr('width', config.svgWidth)
-          .attr('height', config.svgHeight)
-
-        //Create force simulation
-        const simulation = d3.forceSimulation(nodesData)
-          .force("charge", d3.forceManyBody().strength(.1))
-          .force("center", d3.forceCenter().x(config.svgWidth / 2).y(config.svgHeight / 2))
-          .force("collision", d3.forceCollide().radius(d => xScale(d['co2'])));
-
-
-        //Append circles for each node in force simulation and color seelcted ones
-        const nodes = svg.selectAll("circle")
-          .data(nodesData)
-          .enter()
-          .append("circle")
-          .attr("r", d => {
-            return xScale(d['co2'])
-          }) //radius is set by data
-          .style("fill", 'black')
-          .style("fill", 'black')
-
-        //Use tick event to position as simulation runs
-        simulation.on("tick", (event, d) => {
-
-          nodes.attr("cx", d => d.x)
-            .attr("cy", d => d.y);
-
-        });
-      }
-
-
-
-
-
-    }
-
-
-
-
-
-  </script>
+  <script src="graphic.js"></script>
 </body>
 
 </html>

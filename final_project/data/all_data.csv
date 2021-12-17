@@ -1,0 +1,217 @@
+iso_code,country,co2,category,alpha-3,region
+AFG,Afghanistan,12.16,,AFG,Asia
+ALB,Albania,4.535,,ALB,Europe
+DZA,Algeria,154.995,,DZA,Africa
+AND,Andorra,0.466,,AND,Europe
+AGO,Angola,22.198,,AGO,Africa
+AIA,Anguilla,0.12300000000000001,,AIA,Americas
+ATG,Antigua and Barbuda,0.43,,ATG,Americas
+ARG,Argentina,156.97799999999998,highly-insufficient,ARG,Americas
+ARM,Armenia,5.89,,ARM,Asia
+ABW,Aruba,0.753,,ABW,Americas
+AUS,Australia,391.892,highly-insufficient,AUS,Oceania
+AUT,Austria,60.635,,AUT,Europe
+AZE,Azerbaijan,37.72,,AZE,Asia
+BHS,Bahamas,2.338,,BHS,Americas
+BHR,Bahrain,34.96,,BHR,Asia
+BGD,Bangladesh,92.84200000000001,,BGD,Asia
+BRB,Barbados,1.087,,BRB,Americas
+BLR,Belarus,57.445,,BLR,Europe
+BEL,Belgium,83.749,,BEL,Europe
+BLZ,Belize,0.583,,BLZ,Americas
+BEN,Benin,6.702999999999999,,BEN,Africa
+BMU,Bermuda,0.624,,BMU,Americas
+BTN,Bhutan,1.925,,BTN,Asia
+BOL,Bolivia,20.7,,BOL,Americas
+BES,Bonaire Sint Eustatius and Saba,0.301,,BES,Americas
+BIH,Bosnia and Herzegovina,21.418000000000003,,BIH,Europe
+BWA,Botswana,6.519,,BWA,Africa
+BRA,Brazil,467.384,highly-insufficient,BRA,Americas
+VGB,British Virgin Islands,0.139,,VGB,Americas
+BRN,Brunei,10.158,,BRN,Asia
+BGR,Bulgaria,37.444,,BGR,Europe
+BFA,Burkina Faso,3.97,,BFA,Africa
+BDI,Burundi,0.602,,BDI,Africa
+KHM,Cambodia,15.325999999999999,,KHM,Asia
+CMR,Cameroon,6.888999999999999,,CMR,Africa
+CAN,Canada,535.823,highly-insufficient,CAN,Americas
+CPV,Cape Verde,0.55,,CPV,Africa
+CAF,Central African Republic,0.188,,CAF,Africa
+TCD,Chad,0.912,,TCD,Africa
+CHL,Chile,81.171,insufficient,CHL,Americas
+CHN,China,10667.886999999999,highly-insufficient,CHN,Asia
+COL,Colombia,89.105,highly-insufficient,COL,Americas
+COM,Comoros,0.258,,COM,Africa
+COG,Congo,3.117,,COG,Africa
+COK,Cook Islands,0.079,,COK,Oceania
+CRI,Costa Rica,7.907,almost-sufficient,CRI,Americas
+CIV,Cote d'Ivoire,10.071,,CIV,Africa
+HRV,Croatia,16.982,,HRV,Europe
+CUB,Cuba,20.152,,CUB,Americas
+CUW,Curacao,3.335,,CUW,Americas
+CYP,Cyprus,6.496,,CYP,Asia
+CZE,Czechia,87.975,,CZE,Europe
+COD,Democratic Republic of Congo,2.477,,COD,Africa
+DNK,Denmark,26.195,,DNK,Europe
+DJI,Djibouti,0.35100000000000003,,DJI,Africa
+DMA,Dominica,0.139,,DMA,Americas
+DOM,Dominican Republic,27.769000000000002,,DOM,Americas
+ECU,Ecuador,30.932,,ECU,Americas
+EGY,Egypt,213.457,,EGY,Africa
+SLV,El Salvador,6.124,,SLV,Americas
+GNQ,Equatorial Guinea,10.265,,GNQ,Africa
+ERI,Eritrea,0.722,,ERI,Africa
+EST,Estonia,10.452,,EST,Europe
+SWZ,Eswatini,0.956,,SWZ,Africa
+ETH,Ethiopia,14.665,almost-sufficient,ETH,Africa
+FRO,Faeroe Islands,0.684,,FRO,Europe
+FJI,Fiji,1.393,,FJI,Oceania
+FIN,Finland,39.288000000000004,,FIN,Europe
+FRA,France,276.634,,FRA,Europe
+GUF,French Guiana,0.728,,GUF,Americas
+PYF,French Polynesia,0.828,,PYF,Oceania
+GAB,Gabon,4.298,,GAB,Africa
+GMB,Gambia,0.5,almost-sufficient,GMB,Africa
+GEO,Georgia,9.968,,GEO,Asia
+DEU,Germany,644.31,insufficient,DEU,Europe
+GHA,Ghana,16.000999999999998,,GHA,Africa
+GRC,Greece,52.235,,GRC,Europe
+GRL,Greenland,0.514,,GRL,Americas
+GRD,Grenada,0.295,,GRD,Americas
+GLP,Guadeloupe,2.562,,GLP,Americas
+GTM,Guatemala,18.938,,GTM,Americas
+GIN,Guinea,3.3939999999999997,,GIN,Africa
+GNB,Guinea-Bissau,0.287,,GNB,Africa
+GUY,Guyana,2.213,,GUY,Americas
+HTI,Haiti,2.92,,HTI,Americas
+HND,Honduras,9.66,,HND,Americas
+HKG,Hong Kong,31.239,,HKG,Asia
+HUN,Hungary,48.275,,HUN,Europe
+ISL,Iceland,2.9360000000000004,,ISL,Europe
+IND,India,2441.792,highly-insufficient,IND,Asia
+IDN,Indonesia,589.5,highly-insufficient,IDN,Asia
+IRN,Iran,745.035,critically-insufficient,IRN,Asia
+IRQ,Iraq,210.829,,IRQ,Asia
+IRL,Ireland,33.349000000000004,,IRL,Europe
+ISR,Israel,56.351000000000006,,ISR,Asia
+ITA,Italy,303.815,,ITA,Europe
+JAM,Jamaica,7.428999999999999,,JAM,Americas
+JPN,Japan,1030.775,insufficient,JPN,Asia
+JOR,Jordan,25.487,,JOR,Asia
+KAZ,Kazakhstan,291.336,highly-insufficient,KAZ,Asia
+KEN,Kenya,16.146,almost-sufficient,KEN,Africa
+KIR,Kiribati,0.068,,KIR,Oceania
+OWID_KOS,Kosovo,7.89,,,
+KWT,Kuwait,88.935,,KWT,Asia
+KGZ,Kyrgyzstan,11.508,,KGZ,Asia
+LAO,Laos,33.847,,LAO,Asia
+LVA,Latvia,6.773,,LVA,Europe
+LBN,Lebanon,25.969,,LBN,Asia
+LSO,Lesotho,2.1830000000000003,,LSO,Africa
+LBR,Liberia,1.0090000000000001,,LBR,Africa
+LBY,Libya,50.721000000000004,,LBY,Africa
+LIE,Liechtenstein,0.141,,LIE,Europe
+LTU,Lithuania,13.799000000000001,,LTU,Europe
+LUX,Luxembourg,8.175,,LUX,Europe
+MDG,Madagascar,3.68,,MDG,Africa
+MWI,Malawi,1.395,,MWI,Africa
+MYS,Malaysia,272.607,,MYS,Asia
+MDV,Maldives,1.796,,MDV,Asia
+MLI,Mali,3.39,,MLI,Africa
+MLT,Malta,1.595,,MLT,Europe
+MHL,Marshall Islands,0.151,,MHL,Oceania
+MTQ,Martinique,2.3480000000000003,,MTQ,Americas
+MRT,Mauritania,3.377,,MRT,Africa
+MUS,Mauritius,3.9789999999999996,,MUS,Africa
+MYT,Mayotte,0.306,,MYT,Africa
+MEX,Mexico,356.968,highly-insufficient,MEX,Americas
+NAN,Micronesia (country),0.14800000000000002,,,
+MDA,Moldova,5.147,,MDA,Europe
+MNG,Mongolia,88.44200000000001,,MNG,Asia
+MNE,Montenegro,2.31,,MNE,Europe
+MSR,Montserrat,0.025,,MSR,Americas
+MAR,Morocco,64.536,almost-sufficient,MAR,Africa
+MOZ,Mozambique,6.571000000000001,,MOZ,Africa
+MMR,Myanmar,36.326,,MMR,Asia
+NAM,Namibia,3.877,,NAM,Africa
+NRU,Nauru,0.057,,NRU,Oceania
+NPL,Nepal,16.958,almost-sufficient,NPL,Asia
+NLD,Netherlands,138.1,,NLD,Europe
+NCL,New Caledonia,8.693,,NCL,Oceania
+NZL,New Zealand,33.475,highly-insufficient,NZL,Oceania
+NIC,Nicaragua,5.074,,NIC,Americas
+NER,Niger,1.69,,NER,Africa
+NGA,Nigeria,125.463,almost-sufficient,NGA,Africa
+NIU,Niue,0.011000000000000001,,NIU,Oceania
+PRK,North Korea,29.311,,PRK,Asia
+MKD,North Macedonia,7.147,,MKD,Europe
+NOR,Norway,41.283,insufficient,NOR,Europe
+OMN,Oman,62.163000000000004,,OMN,Asia
+PAK,Pakistan,234.755,,PAK,Asia
+PLW,Palau,0.21899999999999997,,PLW,Oceania
+PSE,Palestine,2.8989999999999996,,PSE,Asia
+PAN,Panama,10.78,,PAN,Americas
+PNG,Papua New Guinea,6.652,,PNG,Oceania
+PRY,Paraguay,7.57,,PRY,Americas
+PER,Peru,44.706,insufficient,PER,Americas
+PHL,Philippines,136.018,,PHL,Asia
+POL,Poland,299.593,,POL,Europe
+PRT,Portugal,40.388000000000005,,PRT,Europe
+QAT,Qatar,106.655,,QAT,Asia
+ROU,Romania,71.475,,ROU,Europe
+RUS,Russia,1577.136,critically-insufficient,RUS,Europe
+RWA,Rwanda,1.033,,RWA,Africa
+SHN,Saint Helena,0.009000000000000001,,SHN,Africa
+KNA,Saint Kitts and Nevis,0.212,,KNA,Americas
+LCA,Saint Lucia,0.44,,LCA,Americas
+SPM,Saint Pierre and Miquelon,0.051,,SPM,Americas
+VCT,Saint Vincent and the Grenadines,0.209,,VCT,Americas
+WSM,Samoa,0.24600000000000002,,WSM,Oceania
+STP,Sao Tome and Principe,0.113,,STP,Africa
+SAU,Saudi Arabia,625.508,highly-insufficient,SAU,Asia
+SEN,Senegal,10.450999999999999,,SEN,Africa
+SRB,Serbia,43.135,,SRB,Europe
+SYC,Seychelles,0.491,,SYC,Africa
+SLE,Sierra Leone,0.877,,SLE,Africa
+SGP,Singapore,45.504,critically-insufficient,SGP,Asia
+SXM,Sint Maarten (Dutch part),0.623,,SXM,Americas
+SVK,Slovakia,30.73,,SVK,Europe
+SVN,Slovenia,12.562999999999999,,SVN,Europe
+SLB,Solomon Islands,0.299,,SLB,Oceania
+SOM,Somalia,0.562,,SOM,Africa
+ZAF,South Africa,451.957,insufficient,ZAF,Africa
+KOR,South Korea,597.605,highly-insufficient,KOR,Asia
+SSD,South Sudan,1.179,,SSD,Africa
+ESP,Spain,208.915,,ESP,Europe
+LKA,Sri Lanka,21.105999999999998,,LKA,Asia
+SDN,Sudan,18.859,,SDN,Africa
+SUR,Suriname,2.224,,SUR,Americas
+SWE,Sweden,38.635,,SWE,Europe
+CHE,Switzerland,32.298,insufficient,CHE,Europe
+SYR,Syria,30.531999999999996,,SYR,Asia
+TWN,Taiwan,273.175,,TWN,Asia
+TJK,Tajikistan,9.448,,TJK,Asia
+TZA,Tanzania,10.939,,TZA,Africa
+THA,Thailand,257.76599999999996,critically-insufficient,THA,Asia
+TLS,Timor,0.526,,TLS,Asia
+TGO,Togo,2.1919999999999997,,TGO,Africa
+TON,Tonga,0.14400000000000002,,TON,Oceania
+TTO,Trinidad and Tobago,35.509,,TTO,Americas
+TUN,Tunisia,28.127,,TUN,Africa
+TUR,Turkey,392.79400000000004,critically-insufficient,TUR,Asia
+TKM,Turkmenistan,75.33800000000001,,TKM,Asia
+TCA,Turks and Caicos Islands,0.203,,TCA,Americas
+TUV,Tuvalu,0.008,,TUV,Oceania
+UGA,Uganda,4.8919999999999995,,UGA,Africa
+UKR,Ukraine,213.90900000000002,highly-insufficient,UKR,Europe
+ARE,United Arab Emirates,150.268,highly-insufficient,ARE,Asia
+GBR,United Kingdom,329.579,almost-sufficient,GBR,Europe
+USA,United States,4712.771,insufficient,USA,Americas
+URY,Uruguay,5.84,,URY,Americas
+UZB,Uzbekistan,112.78399999999999,,UZB,Asia
+VUT,Vanuatu,0.182,,VUT,Oceania
+VEN,Venezuela,84.609,,VEN,Americas
+VNM,Vietnam,254.303,critically-insufficient,VNM,Asia
+YEM,Yemen,9.767999999999999,,YEM,Asia
+ZMB,Zambia,6.5729999999999995,,ZMB,Africa
+ZWE,Zimbabwe,10.530999999999999,,ZWE,Africa
